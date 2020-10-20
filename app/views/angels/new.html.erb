@@ -1,0 +1,44 @@
+<div class='text-center' style='color: red; padding: 20px'>
+<% flash.each do |type, msg| %>
+    <%= msg %>
+<% end %>
+</div>
+
+<div class='text-center container-fluid' style="max-width:750px; background-color: #ffffff; border-radius: 25px; padding: 20px; margin-top: 20px">
+
+    <h4 class='text-center'>Angel Sign Up:</h4>
+
+    <br>
+
+    <% @angel = Angel.new %>
+
+    <%= form_for @angel, :html => {:class => 'form-group'} do |f| %>
+        
+        <div>
+            <%= f.label "First Name:", class: 'control-label' %><br>
+            <%= f.text_field :first_name, required: true, class: 'form-control' %><br>
+        </div>
+        
+        <div>
+            <%= f.label "Last Name:" %><br>
+            <%= f.text_field :last_name, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div>
+            <%= f.label "Email:" %><br>
+            <%= f.email_field :email, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div>
+            <%= f.label "Password:" %><br>
+            <%= f.password_field :password, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div>
+            <%= f.label "Password Confirmation:" %><br>
+            <%= f.password_field :password_confirmation, required: true, class: 'form-control' %><br>
+        </div>
+
+        <%= f.submit class: 'btn btn-default btn-md btn-primary' %>
+    <% end %>
+</div>

@@ -7,7 +7,7 @@ class AngelsController < ApplicationController
         if angel_params[:password] == angel_params[:password_confirmation] && !Genius.find_by(email: angel_params[:email]) && !Angel.find_by(email: angel_params[:email])
             Angel.create(first_name: angel_params[:first_name], last_name: angel_params[:last_name], email: angel_params[:email], password: angel_params[:password])
 
-            redirect_to 'pitches/index'
+            redirect_to '/pitches'
         elsif angel_params[:password] != angel_params[:password_confirmation]
             flash[:alert] = "Passwords don't match."
             render :new

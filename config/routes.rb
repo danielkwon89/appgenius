@@ -9,12 +9,13 @@ Rails.application.routes.draw do
 
   resources :angels
   resources :investments
-  
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  # match '/auth/facebook/callback', to: 'sessions#create_from_provider', via: [:get, :post]
+
   root to: 'sessions#new'
 
   get '/login', to: 'sessions#new', as: 'new_session'
   post '/login', to: 'sessions#create', as: 'create_session'
-
-  match '/auth/facebook/callback', to: 'sessions#create_from_provider', via: [:get, :post]
 
 end

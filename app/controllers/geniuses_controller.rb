@@ -4,10 +4,11 @@ class GeniusesController < ApplicationController
     end
 
     def create
+        binding.pry
         if genius_params[:password] == genius_params[:password_confirmation] && !Genius.find_by(email: genius_params[:email]) && !Angel.find_by(email: genius_params[:email])
             Genius.create(first_name: genius_params[:first_name], last_name: genius_params[:last_name], email: genius_params[:email], password: genius_params[:password])
 
-            redirect_to 'pitches/index'
+            redirect_to '/pitches'
 
         elsif genius_params[:password] != genius_params[:password_confirmation]
             flash[:alert] = "Passwords don't match."

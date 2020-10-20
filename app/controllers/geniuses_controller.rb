@@ -1,0 +1,2 @@
+class GeniusesController < ApplicationController
+end

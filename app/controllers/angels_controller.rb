@@ -1,0 +1,2 @@
+class AngelsController < ApplicationController
+end

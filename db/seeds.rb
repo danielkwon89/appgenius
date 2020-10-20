@@ -8,7 +8,7 @@
 
 require 'faker'
 
-15.times do
+5.times do
     Genius.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.unique.email, password: "password")
 
     pitch = Genius.last.pitches.build(title: Faker::Games::LeagueOfLegends.unique.quote, description: Faker::Quote.unique.matz, funding_start_date: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now), funding_end_date: Faker::Time.forward(days: 30, period: :morning), total_funding: 0, funding_goal: Faker::Number.between(from: 10000, to: 10000000), category: Faker::Book.genre)

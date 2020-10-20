@@ -1,0 +1,67 @@
+<div class='text-center'>
+    <%= image_tag 'Appgenius.png', size: "400x400" %>
+</div>
+
+<div class='text-center' style='color: red; padding-bottom: 10rapx'>
+    <% flash.each do |type, msg| %>
+        <%= msg %>
+    <% end %>
+</div>
+
+<div class='container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+
+    <h4 class='text-center'>Angel Login:</h4><br>
+
+    <%= form_for(@angel, :html => {:class => 'form-group'}, :url => create_session_path) do |f| %>
+
+        <div class='col text-center'>
+                <%= f.label 'Email:', class: 'control-label' %><br>
+                <%= f.text_field :email, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Password:', class: 'control-label' %><br>
+            <%= f.password_field :password, required: true, class: 'form-control' %><br>
+        </div>
+    
+        <div class="col text-center">
+            <%= f.submit 'Login', class: 'btn btn-default btn-md btn-primary' %>
+        </div>
+    
+    <% end %>
+
+    <div class="col text-center">
+        <%= link_to 'Login with Facebook', '/auth/facebook', :class => 'btn btn-primary' %>
+        <br><br>
+    <h6 class='text-center'>Create an account to find investors! <%= link_to 'Angel Sign Up', '/angels/new', :class => 'btn btn-primary' %></h6>
+    </div>
+</div>
+
+<br><br>
+
+<div class='container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+    <h4 class='text-center'>Genius Login:</h4><br>
+    <%= form_for(@genius, :html => {:class => 'form-group'}, :url => create_session_path) do |f| %>
+
+    <div class='col text-center'>
+        <%= f.label 'Email:', class: 'control-label' %><br>
+        <%= f.text_field :email, required: true, class: 'form-control' %><br>
+    </div>
+
+    <div class='col text-center'>
+        <%= f.label 'Password:', class: 'control-label' %><br>
+        <%= f.password_field :password, required: true, class: 'form-control' %><br>
+    </div>
+
+    <div class="col text-center">
+        <%= f.submit 'Login', class: 'btn btn-default btn-md btn-primary' %>
+    </div>
+
+    <% end %>
+
+    <div class="col text-center">
+        <%= link_to 'Login with Facebook', '/auth/facebook', :class => 'btn btn-primary' %>
+        <br><br>
+    <h6 class='text-center'>Create an account to invest in startups! <%= link_to 'Genius Sign Up', '/geniuses/new', :class => 'btn btn-primary' %></h6>
+    </div>
+</div>

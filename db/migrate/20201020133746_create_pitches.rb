@@ -11,7 +11,6 @@ class CreatePitches < ActiveRecord::Migration[6.0]
       t.float :funding_goal
 
       t.string :category
-
       t.integer :genius_id
 
       t.timestamps

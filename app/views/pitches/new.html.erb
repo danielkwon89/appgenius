@@ -1,0 +1,56 @@
+<div class='text-center' style='color: red; padding-bottom: 10px'>
+    <% flash.each do |type, msg| %>
+        <%= msg %>
+    <% end %>
+</div>
+
+<div class='container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+
+    <h4 class='text-center'>Create A Startup:</h4><br>
+
+    <%= form_for @pitch, :html => {:class => 'form-group'} do |f| %>
+
+        <div class='col text-center'>
+            <%= f.label 'Title:', class: 'control-label' %><br>
+            <%= f.text_field :title, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Description:', class: 'control-label' %><br>
+            <%= f.text_area :description, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Category:', class: 'control-label' %><br>
+            <%= f.text_field :category, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Funding Start Date:', class: 'control-label' %><br>
+            <%= f.datetime_field :funding_start_date, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Funding End Date:', class: 'control-label' %><br>
+            <%= f.datetime_field :funding_end_date, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Total Funding:', class: 'control-label' %><br>
+            <%= f.number_field :total_funding, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.label 'Funding Goal:', class: 'control-label' %><br>
+            <%= f.number_field :funding_goal, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class="col text-center">
+            <%= f.submit 'Create Startup!', class: 'btn btn-default btn-md btn-primary' %>
+        </div>
+
+    </div>
+
+    <% end %>
+
+</div>

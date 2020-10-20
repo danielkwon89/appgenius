@@ -3,29 +3,45 @@
 
     <br>
 
+    <% if session[:genius_id] %>
+        <div class='row justify-content-center'>
+            <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='col-auto' style='padding-right: 2.5px'>
+                    <%= button_to "Create A Startup", new_pitch_path, {method: 'get', class: 'btn btn-default btn-md btn-info'} %>
+                </div>
+                <div class='col-auto' style='padding-left: 2.5px'>
+                    <%= button_to "View Your Startups", genius_path(Genius.find(session[:genius_id])), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+                </div>
+            </div>
+        </div>
+    <% elsif session[:angel_id] %>
+    <% end %>
+    
+    <br>
+
     <ul>
-        <% Pitch.all.each do |pitch| %>
+        <% @pitches.each do |pitch| %>
             <div>
                 <li>
                 <b>Title: </b><%= pitch.title %><br>
-                <b>Description: </b><br><%= pitch.description %><br>
+                <b>Genius: </b><%= pitch.genius.first_name %> <%= pitch.genius.last_name %><br>
+                <b>The Pitch: </b><br><%= pitch.description %><br>
                 <b>Category: </b><%= pitch.category %><br>
                 <b>Funding Start Date: </b><%= pitch.funding_start_date %><br>
                 <b>Funding End Date: </b><%= pitch.funding_end_date %><br>
                 <b>Total Funding: </b><%= pitch.total_funding %><br>
                 <b>Funding Goal: </b><%= pitch.funding_goal %><br>
 
-                <div class='container-fluid'>
-                    <div class='row no-gutters'>
-                        <div class='col-auto'>
-                            <%= button_to "View", pitch_path(pitch), {class: 'btn btn-default btn-md btn-primary'} %>
-                        </div>
-                        <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
-                            <%= button_to "Fund", pitch_path(pitch), {class: 'btn btn-default btn-md btn-success'} %>
-                        </div>
-                        <div class='col-auto'>
-                            <%= button_to "Save", pitch_path(pitch), {class: 'btn btn-default btn-md btn-warning'} %>
-                        </div>
+
+                <div class='row no-gutters' style='padding-top: 5px'>
+                    <div class='col-auto'>
+                        <%= button_to "View", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+                    </div>
+                    <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
+                        <%= button_to "Fund", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-success'} %>
+                    </div>
+                    <div class='col-auto'>
+                        <%= button_to "Save", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
                     </div>
                 </div>
                 </li>

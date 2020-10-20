@@ -1,1 +1,36 @@
-<h1>Pitches Index</h1>
+<div class='container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+    <h3 class='text-center'>All Startups: </h3>
+
+    <br>
+
+    <ul>
+        <% Pitch.all.each do |pitch| %>
+            <div>
+                <li>
+                <b>Title: </b><%= pitch.title %><br>
+                <b>Description: </b><br><%= pitch.description %><br>
+                <b>Category: </b><%= pitch.category %><br>
+                <b>Funding Start Date: </b><%= pitch.funding_start_date %><br>
+                <b>Funding End Date: </b><%= pitch.funding_end_date %><br>
+                <b>Total Funding: </b><%= pitch.total_funding %><br>
+                <b>Funding Goal: </b><%= pitch.funding_goal %><br>
+
+                <div class='container-fluid'>
+                    <div class='row no-gutters'>
+                        <div class='col-auto'>
+                            <%= button_to "View", pitch_path(pitch), {class: 'btn btn-default btn-md btn-primary'} %>
+                        </div>
+                        <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
+                            <%= button_to "Fund", pitch_path(pitch), {class: 'btn btn-default btn-md btn-success'} %>
+                        </div>
+                        <div class='col-auto'>
+                            <%= button_to "Save", pitch_path(pitch), {class: 'btn btn-default btn-md btn-warning'} %>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <br>
+            </div>
+        <% end %>
+    </ul>
+</div>

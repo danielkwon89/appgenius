@@ -1,0 +1,2 @@
+class Genius < ApplicationRecord
+end

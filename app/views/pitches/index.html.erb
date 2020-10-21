@@ -1,4 +1,4 @@
-<div class='container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+<div class='text-center container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
     <h3 class='text-center'>All Startups: </h3>
 
     <br>
@@ -19,10 +19,8 @@
     
     <br>
 
-    <ul>
         <% @pitches.each do |pitch| %>
             <div>
-                <li>
                 <b>Title: </b><%= pitch.title %><br>
                 <b>Genius: </b><%= pitch.genius.first_name %> <%= pitch.genius.last_name %><br>
                 <b>The Pitch: </b><br><%= pitch.description %><br>
@@ -33,7 +31,7 @@
                 <b>Funding Goal: </b><%= pitch.funding_goal %><br>
 
 
-                <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='row no-gutters justify-content-center' style='padding-top: 5px'>
                     <div class='col-auto'>
                         <%= button_to "View", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
                     </div>
@@ -44,9 +42,7 @@
                         <%= button_to "Save", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
                     </div>
                 </div>
-                </li>
                 <br>
             </div>
         <% end %>
-    </ul>
 </div>

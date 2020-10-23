@@ -1,5 +1,6 @@
 <div class='text-center container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
     <div>
+        <h4>Startup Idea: </h4><br>
         <b>Title: </b><%= @pitch.title %><br>
         <b>Genius: </b><%= @pitch.genius.first_name %> <%= @pitch.genius.last_name %><br>
         <b>The Pitch: </b><br><%= @pitch.description %><br>
@@ -9,17 +10,26 @@
         <b>Total Funding: </b><%= @pitch.total_funding %><br>
         <b>Funding Goal: </b><%= @pitch.funding_goal %><br>
 
-
         <div class='row no-gutters justify-content-center'style='padding-top: 5px'>
             <div class='col-auto'>
-                <%= button_to "Back",pitches_path, {method: 'get',class: 'btn btn-default btn-md btn-primary'} %>
+                <%= button_to "Back", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
             </div>
-            <div class='col-auto' style='padding-left: 6px;padding-right: 6px;'>
-                <%= button_to "Fund",pitches_path, {method: 'get',class: 'btn btn-default btn-md btn-success'} %>
+            <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
+                <%= button_to "Fund", new_investment_path, {method: 'get', class: 'btn btn-default btn-md btn-success', params: {pitch_id: @pitch.id}}%>
             </div>
             <div class='col-auto'>
-                <%= button_to "Save",pitches_path, {method: 'get',class: 'btn btn-default btn-md btn-warning'} %>
+                <%= button_to "Save", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
             </div>
         </div>
+
+            <% if @pitch.investments.count > 0 %>
+                <br><br><h4>Investments: </h4><br>
+            <% end %>
+            
+            <% @pitch.investments.each do |investment| %>
+                <b>Angel Name: </b><%= investment.angel.first_name %> <%= investment.angel.last_name %><br>
+                <b>Investment Amount: </b><%= investment.investment_amount %><br><br>
+            <% end %>
+
     </div>
 </div>

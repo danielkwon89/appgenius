@@ -1,0 +1,30 @@
+<div class='text-center' style='color: red; padding-bottom: 10px'>
+    <% flash.each do |type, msg| %>
+        <%= msg %>
+    <% end %>
+</div>
+
+<div class='container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+
+    <h4 class='text-center'>Fund This Startup!</h4><br>
+
+    <%= form_for @investment, :html => {:class => 'form-group'} do |f| %>
+
+        <div class='col text-center'>
+            <%= f.label 'Investment Amount:', class: 'control-label' %><br>
+            <%= f.text_field :investment_amount, required: true, class: 'form-control' %><br>
+        </div>
+
+        <div class='col text-center'>
+            <%= f.hidden_field :pitch_id, value: params[:pitch_id] %>
+        </div>
+
+        <div class="col text-center">
+            <%= f.submit 'Invest!', class: 'btn btn-default btn-md btn-success' %>
+        </div>
+
+        </div>
+
+    <% end %>
+
+</div>

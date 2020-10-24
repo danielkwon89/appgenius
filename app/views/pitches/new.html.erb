@@ -10,6 +10,8 @@
 
     <%= form_for @pitch, :html => {:class => 'form-group'} do |f| %>
 
+        <% f.hidden_field :genius_id %>
+
         <div class='col text-center'>
             <%= f.label 'Title:', class: 'control-label' %><br>
             <%= f.text_field :title, required: true, class: 'form-control' %><br>

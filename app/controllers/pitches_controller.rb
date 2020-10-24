@@ -12,7 +12,7 @@ class PitchesController < ApplicationController
     end
 
     def new
-        @pitch = Pitch.new
+        @pitch = Pitch.new(genius_id: params[:genius_id])
     end
 
     def create
@@ -25,6 +25,6 @@ class PitchesController < ApplicationController
     private
 
     def pitch_params
-        params.require(:pitch).permit(:title, :description, :category, :funding_start_date, :funding_end_date, :total_funding, :funding_goal)
+        params.require(:pitch).permit(:title, :description, :category, :funding_start_date, :funding_end_date, :total_funding, :funding_goal, :author_id)
     end
 end

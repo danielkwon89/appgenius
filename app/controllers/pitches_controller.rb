@@ -1,6 +1,10 @@
 class PitchesController < ApplicationController
     def index
-        @pitches = Pitch.all
+        if params[:genius_id]
+            @pitches = Genius.find(params[:genius_id]).pitches
+        else
+            @pitches = Pitch.all
+        end
     end
 
     def show

@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :geniuses
+  resources :geniuses do
+    resources :pitches, only: [:show, :index]
+  end
+
   resources :pitches
 
   get '/angels/signup', to: 'angels#new'
   post '/angels/signup', to: 'angels#new'
 
-  resources :angels
+  resources :angels do
+    resources :investments, only: [:show, :index]
+  end
+
   resources :investments
 
   get '/auth/:provider/callback', to: 'sessions#create'

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :pitches, only: [:show, :index, :new]
   end
 
+  get '/pitches/fully_funded', to: 'pitches#fully_funded', as: 'fully_funded_pitches'
+
   resources :pitches
 
   get '/angels/signup', to: 'angels#new'

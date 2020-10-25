@@ -7,6 +7,10 @@ class PitchesController < ApplicationController
         end
     end
 
+    def fully_funded
+        @pitches = Pitch.fully_funded
+    end
+
     def show
         @pitch = Pitch.find(params[:id])
     end

@@ -4,6 +4,10 @@
     
     <br>
 
+    <div class='col-auto'>
+        <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+    </div>
+    
     <% if session[:genius_id] %>
         <div class='row justify-content-center'>
             <div class='row no-gutters' style='padding-top: 5px'>

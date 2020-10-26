@@ -1,1 +1,44 @@
-<h1>Angel Show</h1>
+<div class='text-center container-fluid' style="max-width:750px; background-color: #ffffff; border-radius: 25px; padding: 20px; margin-top: 20px">
+
+    <h3 class='text-center'><%= @angel.first_name %> <%= @angel.last_name %>'s Investments: </h3>
+    
+    <br>
+
+    <div class='col-auto'>
+        <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+    </div>
+
+    <% if session[:genius_id] %>
+        <div class='row justify-content-center'>
+            <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='col-auto' style='padding-right: 2.5px'>
+                    <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+                </div>
+            </div>
+        </div>
+        <br>
+    <% elsif session[:angel_id] %>
+        <br>
+    <% end %>
+
+    <% @angel.investments.each do |investment| %>
+
+            <b>The Startup: </b><br><%= investment.pitch.title %><br>
+            <b>Startup Genius: </b><%= button_to "#{investment.pitch.genius.first_name} #{investment.pitch.genius.last_name}", genius_path(investment.pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
+            <b>Startup Description: </b><br><%= investment.pitch.description %><br>
+            <b>Amount Invested: </b><%= investment.investment_amount %><br>
+
+        <div class='row no-gutters justify-content-center' style='padding-top: 5px'>
+            <div class='col-auto'>
+                <%= button_to "View", pitch_path(investment.pitch), {method: 'get', class: 'btn btn-default  btn-md btn-primary'} %>
+            </div>
+            <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
+                <%= button_to "Fund", pitch_path(investment.pitch), {method: 'get', class: 'btn btn-default  btn-md btn-success'} %>
+            </div>
+            <div class='col-auto'>
+                <%= button_to "Save", pitch_path(investment.pitch), {method: 'get', class: 'btn btn-default  btn-md btn-warning'} %>
+            </div>
+        </div>
+        <br>
+    <% end %>
+</div>

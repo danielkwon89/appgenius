@@ -4,14 +4,21 @@ class InvestmentsController < ApplicationController
     end
 
     def create
-        binding.pry
-        Investment.create(investment_amount: investment_params[:investment_amount].to_f, pitch_id: investment_params[:pitch_id], angel_id: session[:angel_id])
-
-        pitch = Pitch.find(investment_params[:pitch_id])
-        pitch.total_funding += investment_params[:investment_amount].to_f
-        pitch.save
-
-        redirect_to pitch_path(investment_params[:pitch_id])
+        if session[:angel_id]
+            investment = Investment.create(investment_amount: investment_params[:investment_amount].to_f, pitch_id: investment_params[:pitch_id], angel_id: session[:angel_id])
+            if investment.save
+                pitch = Pitch.find(investment_params[:pitch_id])
+                pitch.total_funding += investment_params[:investment_amount].to_f
+                pitch.save
+                redirect_to pitch_path(investment_params[:pitch_id])
+            else
+                flash[:alert] = "Investment could not be created. Please try logging out and logging back in if this issue persists."
+                render :new
+            end
+        else
+            flash[:alert] = "Only Angels can invest!"
+            render :new
+        end
     end
 
     private

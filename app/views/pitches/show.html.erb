@@ -1,14 +1,26 @@
 <div class='text-center container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
     <div>
+
         <h4>Startup Idea: </h4><br>
+
+        <div class='row justify-content-center'>
+            <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='col-auto' style='padding-right: 2.5px'>
+                    <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
         <b>Title: </b><%= @pitch.title %><br>
-        <b>Genius: </b><%= @pitch.genius.first_name %> <%= @pitch.genius.last_name %><br>
+        <b>Genius: </b><%= button_to "#{@pitch.genius.first_name} #{@pitch.genius.last_name}", genius_path(@pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
         <b>The Pitch: </b><br><%= @pitch.description %><br>
         <b>Category: </b><%= @pitch.category %><br>
-        <b>Funding Start Date: </b><%= @pitch.funding_start_date %><br>
-        <b>Funding End Date: </b><%= @pitch.funding_end_date %><br>
-        <b>Total Funding: </b><%= @pitch.total_funding %><br>
-        <b>Funding Goal: </b><%= @pitch.funding_goal %><br>
+        <b>Funding Start Date: </b><%= @pitch.funding_start_date.strftime("%b %d, %Y %l:%M %p") %><br>
+        <b>Funding End Date: </b><%= @pitch.funding_end_date.strftime("%b %d, %Y %l:%M %p") %><br>
+        <b>Total Funding: </b>$<%= number_with_delimiter(@pitch.total_funding) %><br>
+        <b>Funding Goal: </b>$<%= number_with_delimiter(@pitch.funding_goal) %><br>
 
         <div class='row no-gutters justify-content-center'style='padding-top: 5px'>
             <div class='col-auto'>

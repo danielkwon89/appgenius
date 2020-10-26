@@ -3,6 +3,12 @@
     
     <br>
 
+    <div class='col-auto' style='padding-right: 2.5px'>
+        <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+    </div>
+
+    <br>
+
         <% @pitches.each do |pitch| %>
             <div>
                 <b>Title: </b><%= pitch.title %><br>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :investments
 
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create_from_provider'
   # match '/auth/facebook/callback', to: 'sessions#create_from_provider', via: [:get, :post]
 
   root to: 'sessions#new'

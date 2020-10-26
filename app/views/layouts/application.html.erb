@@ -10,9 +10,20 @@
 
   </head>
   <body style="background-color: #004aad">
-    <div>
-      # home, logout button
-    </div>
+    <% if logged_in? %>
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li>
+              <a class="nav-link" href="/pitches">Startups</a>
+            </li>
+            <li>
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    <% end %>
 
     <%= yield %>
 

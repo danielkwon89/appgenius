@@ -34,6 +34,18 @@ class SessionsController < ApplicationController
 
     def create_from_provider
         # If the email doesn't exist, render a page saying that email doesn't exist, and have them choose between creating an Angel or a Genius account then redirect_to the sign up page of choice.
+        @angel = Angel.find_by(email: auth[:info][:email])
+        @genius = Genius.find_by(email: auth[:info][:email])
+
+        if @angel
+            session[:angel_id] = @angel.id
+            redirect_to angel_path(@angel)
+        elsif @genius
+            session[:genius_id] = @genius.id
+            redirect_to genius_path(@genius)
+        else
+            redirect_to new_session_path, notice: "Login with Facebook failed."
+        end
     end
 
     def destroy

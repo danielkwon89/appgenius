@@ -4,6 +4,7 @@ class InvestmentsController < ApplicationController
     end
 
     def create
+        binding.pry
         Investment.create(investment_amount: investment_params[:investment_amount].to_f, pitch_id: investment_params[:pitch_id], angel_id: session[:angel_id])
 
         pitch = Pitch.find(investment_params[:pitch_id])

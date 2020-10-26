@@ -1,14 +1,8 @@
 <div class='text-center container-fluid' style="max-width:750px; background-color: #ffffff; border-radius: 25px; padding: 20px; margin-top: 20px">
 
     <h3 class='text-center'><%= @angel.first_name %> <%= @angel.last_name %>'s Investments: </h3>
-    
     <br>
-
-    <div class='col-auto'>
-        <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
-    </div>
-
-    <% if session[:genius_id] %>
+    <% if session[:genius_id] || session[:angel_id] %>
         <div class='row justify-content-center'>
             <div class='row no-gutters' style='padding-top: 5px'>
                 <div class='col-auto' style='padding-right: 2.5px'>

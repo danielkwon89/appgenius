@@ -1,0 +1,31 @@
+<div class='text-center container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+    <div>
+
+        <h4>View Investment: </h4><br>
+
+        <div class='row justify-content-center'>
+            <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='col-auto' style='padding-right: 2.5px'>
+                    <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+
+        <b>The Startup: </b><br><%= @investment.pitch.title %><br>
+        <b>Genius: </b><%= button_to "#{@investment.pitch.genius.first_name} #{@investment.pitch.genius.last_name}", genius_path(@investment.pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
+        <b>Startup Description: </b><br><%= @investment.pitch.description %><br>
+        <b>Category: </b><%= @investment.pitch.category %><br>
+        <b>Amount Invested: </b>$<%= number_with_delimiter(@investment.investment_amount) %><br>
+
+        <div class='row no-gutters justify-content-center'style='padding-top: 5px'>
+            <div class='col-auto' style='padding-right: 6px'>
+                <%= button_to "Back", pitch_path(@investment.pitch), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+            </div>
+            <div class='col-auto'
+                <%= button_to "Save", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
+            </div>
+        </div>
+    </div>
+</div>

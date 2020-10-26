@@ -21,6 +21,10 @@ class InvestmentsController < ApplicationController
         end
     end
 
+    def show
+        @investment = Investment.find(params[:id])
+    end
+
     private
 
     def investment_params

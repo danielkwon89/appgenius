@@ -1,1 +1,50 @@
-<h1>Angels Index</h1>
+<div class='text-center container-fluid' style='max-width: 750px; background-color: #ffffff; border-radius: 25px; padding: 20px'>
+    <h3 class='text-center'>All Angels: </h3>
+
+    <br>
+
+    <% if session[:genius_id] %>
+        <div class='row justify-content-center'>
+            <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='col-auto' style='padding-right: 2.5px;'>
+                    <%= button_to "View Your Startups", genius_path(Genius.find(session[:genius_id])), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
+                </div>
+                <div class='col-auto' style='padding-left: 2.5px; padding-right: 2.5px;'>
+                    <%= button_to "Fully-Funded Startups", fully_funded_pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-success'} %>
+                </div>
+                <div class='col-auto' style='padding-left: 2.5px'>
+                    <%= button_to "Create A Startup", new_pitch_path, {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
+                </div>
+            </div>
+        </div>
+    <% elsif session[:angel_id] %>
+        <div class='row justify-content-center'>
+            <div class='row no-gutters' style='padding-top: 5px'>
+                <div class='col-auto' style='padding-left: 2.5px; padding-right: 2.5px;'>
+                    <%= button_to "Fully-Funded Startups", fully_funded_pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-success'} %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    
+    <br>
+
+        <% @angels.each do |angel| %>
+            <div>
+                <b>Angel Name: </b><%= button_to "#{angel.first_name} #{angel.last_name}", angel_path(angel), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
+                <b>Investment Categories: </b>
+                    <% investment_categories = angel.pitches.map{|pitch| pitch.category}.uniq.sort! %>
+                    <% investment_categories.each do |category| %>
+                        <%= category %>
+                    <% end %>
+                <br>
+                <b>Total Investments: </b>
+                <% total_investments = 0 %>
+                <% angel.investments.each do |investment| %>
+                    <% total_investments += investment.investment_amount %>
+                <% end %>
+                $<%= number_with_delimiter(total_investments) %><br>
+                <br>
+            </div>
+        <% end %>
+</div>

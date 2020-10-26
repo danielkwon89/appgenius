@@ -23,6 +23,10 @@ class AngelsController < ApplicationController
         @angel = Angel.find(params[:id])
     end
 
+    def index
+        @angels = Angel.all
+    end
+
     private
 
     def angel_params

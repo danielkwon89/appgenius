@@ -7,7 +7,7 @@ class InvestmentsController < ApplicationController
 
     def create
         if session[:angel_id]
-            investment = Investment.create(investment_amount: investment_params[:investment_amount].to_f, pitch_id: investment_params[:pitch_id], angel_id: session[:angel_id])
+            investment = Investment.new(investment_amount: investment_params[:investment_amount].to_f, pitch_id: investment_params[:pitch_id], angel_id: session[:angel_id])
             if investment.save
                 pitch = Pitch.find(investment_params[:pitch_id])
                 pitch.total_funding += investment_params[:investment_amount].to_f

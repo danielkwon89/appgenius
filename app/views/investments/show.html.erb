@@ -3,15 +3,7 @@
 
         <h4>View Investment: </h4><br>
 
-        <div class='row justify-content-center'>
-            <div class='row no-gutters' style='padding-top: 5px'>
-                <div class='col-auto' style='padding-right: 2.5px'>
-                    <%= button_to "View All Startups", pitches_path, {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
-                </div>
-            </div>
-        </div>
-        
-        <br>
+        <%= render "shared/view_all_startups_button" %>
 
         <b>The Startup: </b><br><%= @investment.pitch.title %><br>
         <b>Genius: </b><%= button_to "#{@investment.pitch.genius.first_name} #{@investment.pitch.genius.last_name}", genius_path(@investment.pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>

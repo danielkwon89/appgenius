@@ -1,16 +1,18 @@
 class AngelsController < ApplicationController
+    before_action :require_login, except: [:new, :create]
+
     def new
         @angel = Angel.new
     end
 
-    def create      
+    def create
         @user = Angel.new(first_name: angel_params[:first_name], last_name: angel_params[:last_name], email: angel_params[:email], password: angel_params[:password])
 
-        if angel_params[:password] == angel_params[:password_confirmation] && !Genius.find_by(email: angel_params[:email]) && !Angel.find_by(email: angel_params[:email]) && @user.save
+        if passwords_match? && !Genius.find_by(email: angel_params[:email]) && !Angel.find_by(email: angel_params[:email]) && @user.save
             session[:angel_id] = @user.id
             redirect_to '/pitches'
 
-        elsif angel_params[:password] != angel_params[:password_confirmation]
+        elsif !passwords_match?
             flash[:alert] = "Passwords don't match."
             render :new
 
@@ -32,5 +34,16 @@ class AngelsController < ApplicationController
 
     def angel_params
         params.require(:angel).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def passwords_match?
+        angel_params[:password] == angel_params[:password_confirmation]
+    end
+    
+    def require_login
+        unless logged_in?
+            flash[:error] = "You must be logged in to access this section."
+            redirect_to new_session_path
+        end
     end
 end

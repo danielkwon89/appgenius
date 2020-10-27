@@ -1,4 +1,6 @@
 class InvestmentsController < ApplicationController
+    before_action :require_login
+
     def new
         @investment = Investment.new
     end
@@ -29,5 +31,12 @@ class InvestmentsController < ApplicationController
 
     def investment_params
         params.require(:investment).permit(:investment_amount, :pitch_id)
+    end
+
+    def require_login
+        unless logged_in?
+            flash[:error] = "You must be logged in to access this section."
+            redirect_to new_session_path
+        end
     end
 end

@@ -6,8 +6,5 @@ module ApplicationHelper
 
     def current_user
     end
-
-    # def logout
-    # end
-
+    
 end

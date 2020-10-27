@@ -9,29 +9,29 @@
 
     <br>
 
-        <% @pitches.each do |pitch| %>
-            <div>
-                <b>Title: </b><%= pitch.title %><br>
-                <b>Genius: </b><%= button_to "#{pitch.genius.first_name} #{pitch.genius.last_name}", genius_path(pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
-                <b>The Pitch: </b><br><%= pitch.description %><br>
-                <b>Category: </b><%= pitch.category %><br>
-                <b>Funding Start Date: </b><%= pitch.funding_start_date.strftime("%b %d, %Y %l:%M %p") %><br>
-                <b>Funding End Date: </b><%= pitch.funding_end_date.strftime("%b %d, %Y %l:%M %p") %><br>
-                <b>Total Funding: </b>$<%= number_with_delimiter(pitch.total_funding) %><br>
-                <b>Funding Goal: </b>$<%= number_with_delimiter(pitch.funding_goal) %><br>
+    <% @pitches.each do |pitch| %>
+        <div>
+            <b>Title: </b><%= pitch.title %><br>
+            <b>Genius: </b><%= button_to "#{pitch.genius.first_name} #{pitch.genius.last_name}", genius_path(pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
+            <b>The Pitch: </b><br><%= pitch.description %><br>
+            <b>Category: </b><%= pitch.category %><br>
+            <b>Funding Start Date: </b><%= pitch.funding_start_date.strftime("%b %d, %Y %l:%M %p") %><br>
+            <b>Funding End Date: </b><%= pitch.funding_end_date.strftime("%b %d, %Y %l:%M %p") %><br>
+            <b>Total Funding: </b>$<%= number_with_delimiter(pitch.total_funding) %><br>
+            <b>Funding Goal: </b>$<%= number_with_delimiter(pitch.funding_goal) %><br>
 
-                <div class='row no-gutters justify-content-center' style='padding-top: 5px'>
+            <div class='row no-gutters justify-content-center' style='padding-top: 5px'>
                     <div class='col-auto'>
-                        <%= button_to "View", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
-                    </div>
-                    <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
-                        <%= button_to "Fund", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-success'} %>
-                    </div>
-                    <div class='col-auto'>
-                        <%= button_to "Save", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
-                    </div>
+                    <%= button_to "View", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-primary'} %>
                 </div>
-                <br>
+                <div class='col-auto' style='padding-left: 6px; padding-right: 6px;'>
+                    <%= button_to "Fund", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-success'} %>
+                </div>
+                <div class='col-auto'>
+                    <%= button_to "Save", pitch_path(pitch), {method: 'get', class: 'btn btn-default btn-md btn-warning'} %>
+                </div>
             </div>
-        <% end %>
+            <br>
+        </div>
+    <% end %>
 </div>

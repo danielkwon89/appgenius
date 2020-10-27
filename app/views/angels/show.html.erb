@@ -20,7 +20,7 @@
             <b>The Startup: </b><br><%= investment.pitch.title %><br>
             <b>Startup Genius: </b><%= button_to "#{investment.pitch.genius.first_name} #{investment.pitch.genius.last_name}", genius_path(investment.pitch.genius), {method: 'get', class: 'btn btn-default btn-sm btn-warning'} %>
             <b>Startup Description: </b><br><%= investment.pitch.description %><br>
-            <b>Amount Invested: </b><%= investment.investment_amount %><br>
+            <b>Amount Invested: </b>$<%= number_with_delimiter(investment.investment_amount) %><br>
 
         <div class='row no-gutters justify-content-center' style='padding-top: 5px'>
             <div class='col-auto'>

@@ -3,18 +3,19 @@ class AngelsController < ApplicationController
         @angel = Angel.new
     end
 
-    def create
-        if angel_params[:password] == angel_params[:password_confirmation] && !Genius.find_by(email: angel_params[:email]) && !Angel.find_by(email: angel_params[:email])
-            user = Angel.create(first_name: angel_params[:first_name], last_name: angel_params[:last_name], email: angel_params[:email], password: angel_params[:password])
-            
-            session[:angel_id] = user.id
+    def create      
+        @user = Angel.new(first_name: angel_params[:first_name], last_name: angel_params[:last_name], email: angel_params[:email], password: angel_params[:password])
+
+        if angel_params[:password] == angel_params[:password_confirmation] && !Genius.find_by(email: angel_params[:email]) && !Angel.find_by(email: angel_params[:email]) && @user.save
+            session[:angel_id] = @user.id
             redirect_to '/pitches'
+
         elsif angel_params[:password] != angel_params[:password_confirmation]
             flash[:alert] = "Passwords don't match."
             render :new
 
         else
-            flash[:alert] = "Email already exists."
+            flash[:alert] = "Email already exists or some other error."
             render :new
         end
     end
